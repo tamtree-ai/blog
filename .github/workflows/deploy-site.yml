@@ -1,0 +1,49 @@
+# Publishing a post is `git push`. This is the half that makes that true.
+#
+# The site (checkolo/tamtree-web-v3) is a static Astro build on Vercel, and a
+# static build only picks up new content when it runs. Nothing in the site repo
+# changes when a post lands here, so nothing there would trigger a build — this
+# workflow does it, by calling a Vercel Deploy Hook.
+#
+# Setup, once: create the hook at Vercel → the tamtree-web-v3 project →
+# Settings → Git → Deploy Hooks (branch: main), then paste the URL into this
+# repo's Settings → Secrets and variables → Actions as VERCEL_DEPLOY_HOOK.
+# The URL is a credential — anyone holding it can trigger builds — so it lives
+# in a secret, never in this file.
+
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+    # Content only. A README or workflow edit should not spend a build.
+    paths:
+      - 'posts/**'
+      - 'authors/**'
+      - 'images/**'
+  workflow_dispatch:
+
+# A burst of pushes should collapse into one deploy of the final state rather
+# than queueing a build per commit.
+concurrency:
+  group: deploy-site
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger the site build
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "::error::VERCEL_DEPLOY_HOOK is not set — the post is pushed but the site will NOT rebuild."
+            echo "Create it at Vercel → tamtree-web-v3 → Settings → Git → Deploy Hooks,"
+            echo "then add it to this repo under Settings → Secrets and variables → Actions."
+            exit 1
+          fi
+          # --fail turns a 4xx/5xx into a red job. A hook that silently stopped
+          # working is the one failure that would look exactly like success.
+          curl --fail --silent --show-error -X POST "$HOOK" -o /dev/null
+          echo "Site build triggered."
