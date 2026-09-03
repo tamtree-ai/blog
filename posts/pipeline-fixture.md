@@ -46,3 +46,29 @@ export function ttDirectives() {
 Figures describing a run are bracketed until a recorded fixture exists. That is
 contract C5 working, not a gap in the copy.
 :::
+
+:::error
+An `error` callout is the fourth severity: `warn` says this will bite you,
+`error` says this is already broken.
+:::
+
+::::cards
+:::card{title="A card" tone="brand"}
+The title becomes a real `h3` inside an `article`, not a styled first line.
+:::
+
+:::card{title="A linked card" href="/blog/" tone="compose"}
+When `href` is set the heading carries the link.
+:::
+::::
+
+:::compare
+| Question | Tamtree | Something else |
+|---|---|---|
+| Where does state live? | The ledger | [pending] |
+
+:::
+
+:::button
+[Read the writing](/blog/)
+:::

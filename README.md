@@ -58,15 +58,61 @@ Blocks beyond plain Markdown are written as directives. The vocabulary is
 vanishing silently from the page.
 
 ```
-:::note / :::warn / :::tip   a callout
+:::note / :::tip             a callout — context, and a suggestion
+:::warn / :::error           a callout — "this will bite you", "this is broken"
 :::aside                     a digression
 :::steps                     wraps ONE ordered/unordered Markdown list
 :::ledger                    wraps ONE Markdown table
-:::run{src="…"} / :::compare wraps ONE Markdown table
+:::compare                   wraps ONE Markdown table, laid out for comparison
+:::button                    wraps ONE Markdown link, rendered as a button
+:::card{title="…"}           a card — title, optional href and tone
+::::cards                    a grid of two or more :::card blocks
+:::run{src="…"}              wraps ONE Markdown table, from a run fixture
 ::dag{src="…"}               a diagram, from a recorded run fixture
 ::stat{value="…" label="…"}  a single figure
 ::terminal{src="…"}          a recorded session
 ```
+
+### Cards need a longer outer fence
+
+Directive fences nest by **length**, so a grid opens with **four** colons:
+
+```
+::::cards
+:::card{title="Crash-safe runs" tone="brand"}
+A worker dying mid-run is a scheduling event, not data loss.
+:::
+
+:::card{title="Read the spec" href="/blog/" tone="compose"}
+With `href`, the title becomes the link.
+:::
+::::
+```
+
+Write `:::cards` with three and the first card's closing `:::` closes the whole
+grid — the rest of the cards fall outside it and a stray `:::` renders as a
+paragraph. The build catches this and says so, because a grid must hold at least
+two cards. For one card on its own, use `:::card` with no grid around it.
+
+`tone` is one of `brand`, `compose`, `good`, `warn`, `danger` and colours the
+card's top edge only.
+
+### Buttons are links
+
+```
+:::button
+[Read the workflow builder piece](/blog/tamtree-workflow-builder/)
+:::
+```
+
+Exactly one Markdown link and nothing else. It renders as the site's primary
+button and stays an ordinary link in the `.md`, which is the artifact — a
+`::button{href=… label=…}` form would put the words and the destination into
+attributes, where a reader of the source sees machinery instead of a link.
+
+**Internal links must point at pages that exist**, or `gate:links` fails the
+build. Today that means `/`, `/blog/`, a category page, another post, or
+`/#waitlist`.
 
 Every directive must also read correctly as plain text — the `.md` is the
 artifact and the site is a rendering of it, so a block that only makes sense
