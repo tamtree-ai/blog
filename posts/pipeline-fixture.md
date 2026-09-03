@@ -52,6 +52,12 @@ An `error` callout is the fourth severity: `warn` says this will bite you,
 `error` says this is already broken.
 :::
 
+## Blocks that generate their own headings
+
+A card's title becomes an `h3`, so the fixture needs a real `h2` above the grid:
+a page whose outline jumps `h1` → `h3` fails `gate:semantic`, and the fixture is
+the one post where every such structure has to be exercised on purpose.
+
 ::::cards
 :::card{title="A card" tone="brand"}
 The title becomes a real `h3` inside an `article`, not a styled first line.
@@ -61,6 +67,17 @@ The title becomes a real `h3` inside an `article`, not a styled first line.
 When `href` is set the heading carries the link.
 :::
 ::::
+
+## Images
+
+:::figure
+![A ledger with five rows: two steps succeeded, one failed, the same step succeeded on retry, and a final step succeeded.](../images/ledger-attempts.png)
+
+A `figure` wraps a real `<figure>` and turns the paragraph under the image into a
+`<figcaption>` — the association Markdown alone cannot express. A bare
+`![alt](…)` still works and is still the right thing for an image with nothing
+to say about itself.
+:::
 
 :::compare
 | Question | Tamtree | Something else |

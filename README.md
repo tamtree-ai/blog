@@ -65,6 +65,7 @@ vanishing silently from the page.
 :::ledger                    wraps ONE Markdown table
 :::compare                   wraps ONE Markdown table, laid out for comparison
 :::button                    wraps ONE Markdown link, rendered as a button
+:::figure                    ONE Markdown image, plus an optional caption
 :::card{title="…"}           a card — title, optional href and tone
 ::::cards                    a grid of two or more :::card blocks
 :::run{src="…"}              wraps ONE Markdown table, from a run fixture
@@ -96,6 +97,60 @@ two cards. For one card on its own, use `:::card` with no grid around it.
 
 `tone` is one of `brand`, `compose`, `good`, `warn`, `danger` and colours the
 card's top edge only.
+
+### Images
+
+Images live in `images/` and are referenced from a post with an ordinary
+relative Markdown link:
+
+```
+![The ledger after a retry](../images/ledger-attempts.png)
+```
+
+The site resizes them, converts them to WebP, emits a `srcset`, and writes real
+`width`/`height` attributes so the page does not jump while they load. None of
+that needs anything from you beyond the relative path — but the path has to be
+relative (`../images/…`). An absolute `/images/…` is served untouched, at full
+weight, with no dimensions.
+
+**Alt text is required and the build enforces it.** `![](x.png)` fails, and it
+fails on purpose: an empty `alt` is valid HTML meaning *decorative, skip me*, so
+nothing downstream can tell a picture you forgot to describe from one you meant
+to hide. Describe what the picture shows, not that it is a picture.
+
+For a captioned image, use `:::figure` — it produces a real `<figure>` and
+`<figcaption>`, which is the association between a picture and its words that
+Markdown on its own cannot express:
+
+```
+:::figure
+![Five ledger rows, one of them a retry](../images/ledger-attempts.png)
+
+One run, five rows. The failed attempt is not overwritten by the retry.
+:::
+```
+
+One image, and at most one paragraph of caption. A caption that wants two
+paragraphs is prose, and prose belongs under the figure where it reads as prose.
+
+### Hero images
+
+`hero:` in the frontmatter puts a picture at the top of the post and on its card
+in the index, and it becomes the post's social share image:
+
+```yaml
+hero: ../images/hero-durable-runs.png
+heroAlt: A three-step run with the third step failing once and succeeding on retry.
+```
+
+`heroAlt` is **required whenever `hero` is set** — the build rejects the pair
+otherwise. Draw heroes at 1200×630: that is the size every social card wants,
+and the page scales down from it. Anything under about 1000px wide will look
+soft on the post page.
+
+The picture is announced with its `heroAlt` on the post, and marked decorative
+on the index card — the card repeats the title and description right beneath it,
+and reading the same post three times over is not an accessibility win.
 
 ### Buttons are links
 
