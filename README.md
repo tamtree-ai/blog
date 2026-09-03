@@ -1,4 +1,4 @@
-# tamtree-blog-content
+# tamtree-ai/blog
 
 Markdown only. No Node, no build step, nothing to install.
 
