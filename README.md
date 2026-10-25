@@ -1,4 +1,23 @@
-# tamtree-ai/blog
+# Tamtree blog
+
+The source of the [Tamtree blog](https://www.tamtree.io/blog/): engineering and architecture
+writing about [Tamtree](https://www.tamtree.io), an agent-first workflow orchestrator with
+durable runs, human approval steps and promotion gates for AI agents. Every post here is
+published at `tamtree.io/blog/<slug>/`, and its Markdown source at `tamtree.io/blog/<slug>.md`.
+
+## Posts
+
+| Date | Post | Topic |
+|---|---|---|
+| 2026-09-03 | [Seven things an automation tool structurally cannot do](https://www.tamtree.io/blog/what-automation-tools-cannot-do/) | Seven limits of an automation tool that calls an LLM, each one a wall in the engine rather than a missing feature |
+| 2026-09-03 | [The promotion your agent has to earn](https://www.tamtree.io/blog/the-promotion-your-agent-has-to-earn/) | What changes when an AI agent has to pass an eval gate before it reaches production |
+| 2026-09-03 | [5 things Zapier, n8n and Make can't do](https://www.tamtree.io/blog/five-things-your-automation-tool-cant-do/) | Five things a task-runner architecture finds hard to add, explained without jargon |
+| 2026-09-02 | [The workflow builder, and the five decisions inside it](https://www.tamtree.io/blog/tamtree-workflow-builder/) | Designing a workflow builder for day forty, not the first five minutes |
+| 2026-09-01 | [Tamtree, n8n, Zapier and Make: a structural comparison](https://www.tamtree.io/blog/tamtree-vs-n8n-zapier-make/) | Four questions settled by architecture, including the one where the answer runs against Tamtree |
+
+The sections below are for writing and publishing posts.
+
+## Writing a post
 
 Markdown only. No Node, no build step, nothing to install.
 
@@ -176,3 +195,10 @@ once styled is a block written wrong.
 **No figure describing a Tamtree run may be hand-typed.** Costs, durations and
 token counts come from a recorded run fixture, or they are bracketed as
 placeholders.
+
+## Licence
+
+Posts, author pages and images are licensed under
+[Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/) (see
+[LICENSE](LICENSE)). You can quote, translate or republish them, including commercially, as long
+as you credit Tamtree and link to the original post.
