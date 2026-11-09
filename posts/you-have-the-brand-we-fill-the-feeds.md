@@ -1,9 +1,9 @@
 ---
 title: You have the brand. We fill the feeds.
-description: Most businesses we talk to have a strategy and hours of video, and still post twice a month. We now run the production line for them, on Tamtree, with five founding places from A$199 a month.
+description: Most businesses we talk to have a strategy and hours of video, and still post twice a month. We now run the production line for them, on Tamtree, with a person approving every short.
 publishDate: 2026-11-03
 category: product
-tags: [brands, social video, approvals, founding offer]
+tags: [brands, social video, approvals]
 author: dilhan
 ---
 
@@ -88,23 +88,9 @@ The same thinking runs through the rest of the service:
 - **Brand & Launch**: you are starting from scratch. We build the brand kit and
   a 90-day strategy, then run Produce on it.
 
-## Five founding places
-
-We are starting with five businesses, not five hundred, so each one gets our
-full attention and becomes a story we can tell honestly. That is the reason for
-the price:
-
-- **Publish is A$199 a month** for the first three months, normally A$790.
-  Produce is A$790, normally A$2,200. Setup is included.
-- After that, founding clients keep **25% off for twelve months**, so there is
-  no cliff at month four.
-- In return we ask for a short testimonial if you are happy, a case study with
-  your numbers, and fifteen minutes each month telling us what to fix.
-
-The offer closes on 30 November 2026, or sooner if the places go first.
-
-If you have the brand and not the hours, a person reads every application.
+If you have the brand and not the hours, tell us about it. A person reads every
+message.
 
 :::button
-[Claim a founding place](/brands/#apply)
+[Book a chat](/contact/?topic=brands)
 :::
